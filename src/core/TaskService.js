@@ -2,10 +2,10 @@ import { createTodo } from './TodoFactory.js';
 import { Project } from './ProjectFactory.js';
 
 
-class TaskServices  {
+export class TaskServices  {
     constructor(storageAdapter) {
         this.storage = storageAdapter;
-        this.projectList = []; // Now an INSTANCE variable, not global
+        this.projectList = this.storage.loadAllProjects() ?? [];
     }
     addTodoToProject(projectId, todoData) {
         const project = this.projectList.find(p => p.id === projectId);
@@ -14,7 +14,7 @@ class TaskServices  {
         }
         const newTodo = createTodo(todoData);
         project.addTodo(newTodo);
-        storage.saveAllProjects(projectList);
+        storage.saveAllProjects(this.projectList);
   }
     deleteTodoToProject(projectId, TodoId){
         const project = this.projectList.find(p => p.id === projectId);
@@ -22,17 +22,16 @@ class TaskServices  {
             throw new Error("project not found!");
         }
         project.deleteTodo(TodoId);
-        storage.saveAllProjects(projectList);
+        storage.saveAllProjects(this.projectList);
     }
     addProject(ProjectTitle){
         let newProject = new Project(ProjectTitle);
-        projectList.push(newProject);
+        this.projectList.push(newProject);
         storage.saveAllProjects(projectList);
     }
     deleteproject(projectIdDel){
-        projectList = projectList.filter(project => project.id !== projectIdDel);
-        storage.saveAllProjects(projectList);
+        this.projectList = this.projectList.filter(project => project.id !== projectIdDel);
+        storage.saveAllProjects(this.projectList);
     }
 
 }
-export {TaskServices};

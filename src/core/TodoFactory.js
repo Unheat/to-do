@@ -1,12 +1,16 @@
 // THINK: keep data only (no DOM refs)
-export function createTodo({ title, desc, dueDate, priority}) {
+export function createTodo({ title, desc, dueDate, priority= false}) {
   return {
     id: crypto.randomUUID(),
     title,
     desc,
     dueDate,
     priority,
-    isDone: false
-    // toggle() { this.isDone = !this.isDone; }   // this is removed for better memory store, implement it in TaskSerice
+    isDone: false,
+    toggleIsDone() { this.isDone = !this.isDone; },
+    togglePriority() { this.priority = !this.priority; },
+    editTitile( newTitle){},
+    editDesc(newDesc){},
+    editDueDate( newDueDate){}
   };
 }

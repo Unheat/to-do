@@ -4,16 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 </head>
 <body>
   <header>
-    <nav>
-      <button id="home-tab">Home</button>
-      <button id="menu-tab">Menu</button>
-      <button id="contact-tab">Contact</button>
-    </nav>
+    <h1 class = "header-area">What To Du</h1>
+
   </header>
+  <div class = "content">
+    <div class = "left-bar">
+      <div class="home">
+        <h2>Home</h2>
+        <div class="tile" id="allTasks">
+            <img src="images/inbox.png" alt="inbox">
+            <div data-name="">All Tasks</div>
+        </div>
+        <div class="tile selected" id="today">
+            <img src="images/today1.png" alt="today">
+            <div data-name="">Today</div>
+        </div>
+        <div class="tile" id="thisWeek">
+            <img src="images/week2.png">
+            <div data-name="">Next 7 Days</div>
+        </div>
+        <div class="tile" id="important">
+            <img src="images/star.png" alt="star">
+            <div data-name="">Important</div>
+        </div>
+    </div>
+      <div class = "projects"></div>
+    </div>
+    <div class = "right-panel">
+      <div class = "title">All tasks</div>
+      <div class = "todos"></div>
+    </div>
+  </div>
   
-  <div id="content"></div>
 </body>
 </html>
