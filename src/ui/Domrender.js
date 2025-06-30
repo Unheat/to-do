@@ -25,6 +25,7 @@ export class Domrender{
             let container = document.createElement("div");
             container.innerText = project.title;
             container.dataset.id = project.id;
+            container.classList.add("project")
             projects.appendChild(container);
             })
         } 
@@ -38,6 +39,7 @@ export class Domrender{
         if (!Project) return;
         Project.todoList.forEach(todo => {
             let todoContainer = document.querySelector(".todos");
+            todoContainer.innerHTML = ""; //reset
 
             let todoDiv = document.createElement("div");
             todoDiv.classList.add("todo");
