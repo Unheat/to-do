@@ -4,6 +4,10 @@ export class TaskStorage extends TaskStorageInterface{
   
     getAllProjects() {
         const storedData = localStorage.getItem("projectList");
+        if (!storedData) {
+        // 🔒 localStorage chưa có dữ liệu gì → trả về mảng rỗng luôn
+            return [];
+        }
         try {
             const parsedData = JSON.parse(storedData);
             return parsedData.map(projectData => new Project(projectData));

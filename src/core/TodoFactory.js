@@ -9,8 +9,14 @@ export function createTodo({ title, desc, dueDate, priority= false}) {
     isDone: false,
     toggleIsDone() { this.isDone = !this.isDone; },
     togglePriority() { this.priority = !this.priority; },
-    editTitile( newTitle){},
-    editDesc(newDesc){},
-    editDueDate( newDueDate){}
+    editTitile( newTitle){
+        this.title = newTitle;
+    },
+    editDesc(newDesc){
+        this.desc = newDesc;
+    },
+    editDueDate( newDueDate){
+        this.dueDate = dueDate;
+    }
   };
 }

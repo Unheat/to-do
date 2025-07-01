@@ -34,7 +34,7 @@ export class Domrender{
         addProjectButton.innerText = "Add Project";
         projects.appendChild(addProjectButton); 
     }
-    loadTodoProject(ProjectId ,ProjectList){
+    loadTodoFromProjectId(ProjectId ,ProjectList){
         let Project = ProjectList.find(p => p.id === ProjectId);
         if (!Project) return;
         Project.todoList.forEach(todo => {
@@ -68,5 +68,25 @@ export class Domrender{
         addTodoButton.classList.add("add-todo");
         addTodoButton.innerText = "Add Task";
         todoContainer.appendChild(addTodoButton);
+    }
+    loadFormTodo(ProjectId ,ProjectList){
+        let Project = ProjectList.find(p => p.id === ProjectId);
+        const container = document.querySelector(".todos"); 
+        container.innerHTML = `
+            <form id="listForm" class="" autocomplete="off">
+                <div class="inputField">
+                    <label>Title:</label>
+                    <input type="text" id="listInput" placeholder="What to do?">
+                    <label>Details(optional):</label>
+                    <textarea type="text" id="listInputDetail" placeholder="eg: I'm just gonna procrastinate, aren't I?" wrap="hard"></textarea>
+                    <label>Date:</label>
+                    <input type="date" id="listInputDate">
+                    <div class="formButtons">
+                        <input type="submit" class="listSubmitBtn" value="Add" data-project-id="${ProjectId}">
+                        <input type="button" class="listCancelBtn" value="Cancel">
+                    </div>
+                </div>
+            </form>
+        `;
     }
 }
