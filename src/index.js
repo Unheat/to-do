@@ -17,22 +17,15 @@ document.addEventListener("DOMContentLoaded", () => {
     let mainStorage = new TaskStorage();
     let mainService = new TaskServices(mainStorage);
     let render = new Domrender();
+    render.init(); // render form và add-project button 1 lần
     render.loadProjectList(mainService.projectList);
     if(mainService.projectList.length > 0){
         render.loadTodoFromProjectId(mainService.projectList[0].id, mainService.projectList);
     } 
-    addEvents.ProjectFormCancel({
-    ui: render,
-    taskSvc: mainService
-    });
-    addEvents.showTodoForm({
-    ui: render,
-    taskSvc: mainService
-    });
-    addEvents.showTodoForm({
-    ui: render,
-    taskSvc: mainService
-    });
     addEvents.showProjectForm();
+    addEvents.ProjectFormSubmit({ ui: render, taskSvc: mainService });
+    addEvents.ProjectFormCancel();
+    addEvents.showProjectForm();
+    addEvents.showTodoForm({ ui: render, taskSvc: mainService });
 
 });

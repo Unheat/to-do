@@ -1,11 +1,13 @@
 import { TaskStorageInterface } from './storageInterface.js';
+import { Project } from '../ProjectFactory.js'; // 
+
 // import { projectList } from '../TaskService.js';
 export class TaskStorage extends TaskStorageInterface{
   
     getAllProjects() {
         const storedData = localStorage.getItem("projectList");
+        console.log("retrived data: ", storedData);
         if (!storedData) {
-        // 🔒 localStorage chưa có dữ liệu gì → trả về mảng rỗng luôn
             return [];
         }
         try {
@@ -19,6 +21,8 @@ export class TaskStorage extends TaskStorageInterface{
   
   
     saveAllProjects(projectList) {
+    console.log(JSON.stringify(projectList));
     localStorage.setItem("projectList", JSON.stringify(projectList));
+
   }
 }

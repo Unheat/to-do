@@ -41,16 +41,18 @@ function addTodoSubmit({ ui, taskSvc }){
     // Optional: reset form
     e.target.reset();
     ui.loadTodoFromProjectId(projectId, taskSvc.projectList);
+    showTodoForm({ ui, taskSvc })
 });
 } //helper
 function addTodoButtonCancel({ ui, taskSvc }){
-    const TodoForm = document.querySelector("#listCancelBtn");
+    const TodoForm = document.querySelector(".listCancelBtn");
     TodoForm.addEventListener("click", e =>{
       const projectId = e.target.querySelector(".listSubmitBtn").dataset.projectId;
       document.getElementById("listInput").value = '';
       document.getElementById("listInputDetail").value = '';
       document.getElementById("listInputDate").value = '';
       ui.loadTodoFromProjectId(projectId, taskSvc.projectList);
+      showTodoForm({ ui, taskSvc })
     });
 }
 function showTodoForm({ ui, taskSvc }){
@@ -58,9 +60,8 @@ function showTodoForm({ ui, taskSvc }){
     if (button) {
       button.addEventListener("click", e => {
         ui.loadFormTodo();
-        ui.addTodoSubmit({ ui, taskSvc });
-        ui.addTodoButtonCancel({ ui, taskSvc });
-        ui.addTodoButtonCancel({ ui, taskSvc });
+        addTodoSubmit({ ui, taskSvc });
+        addTodoButtonCancel({ ui, taskSvc });
       })
     }
 }
