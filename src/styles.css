@@ -1,4 +1,24 @@
 /* styles.css */
 body {
-  background-color: rebeccapurple;
+  background-color: rgb(86, 77, 94);
+}
+.hidden {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  pointer-events: none !important;
+  max-height: 0 !important;
+  opacity: 0 !important;
+  transition: max-height 1s ease-out !important;
+}
+.project #projectForm {
+    display: flex;
+    flex: 1;
+    align-items: flex-start;
+    opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    transition-delay: 1s;
+    max-height: 500px;
+    transition: max-height 0.8s ease-out, opacity 300ms ease-in-out;
 }

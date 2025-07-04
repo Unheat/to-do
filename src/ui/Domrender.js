@@ -20,6 +20,7 @@ export class Domrender{
 
     loadProjectList(ProjectList){ //default is to load first project
         let projects = document.querySelector(".projects");
+        projects.innerHTML = ''; //reset;
         if (ProjectList.length>0){
             ProjectList.forEach(project => {
             let container = document.createElement("div");
@@ -29,6 +30,47 @@ export class Domrender{
             projects.appendChild(container);
             })
         } 
+        // add hidden form
+        const form = document.createElement("form");
+        form.id = "projectForm";
+        form.setAttribute("autocomplete", "off");
+
+        const inputDiv = document.createElement("div");
+        inputDiv.className = "inputField";
+
+        const input = document.createElement("input");
+        input.type = "text";
+        input.id = "projectInput";
+        input.placeholder = "Enter Project Name";
+        input.maxLength = 24;
+
+        // Buttons container
+        const buttonDiv = document.createElement("div");
+        buttonDiv.className = "formButtons";
+
+        const submitBtn = document.createElement("input");
+        submitBtn.type = "submit";
+        submitBtn.className = "projectSubmitBtn";
+        submitBtn.value = "Add";
+
+        const cancelBtn = document.createElement("input");
+        cancelBtn.type = "button";
+        cancelBtn.className = "projectCancelBtn";
+        cancelBtn.value = "Cancel";
+
+        // Append buttons
+        buttonDiv.appendChild(submitBtn);
+        buttonDiv.appendChild(cancelBtn);
+
+        // Append input and buttons
+        inputDiv.appendChild(input);
+        inputDiv.appendChild(buttonDiv);
+
+        // Append everything to the form
+        form.appendChild(inputDiv);
+        form.classList.add("hidden");
+        projects.appendChild(form);
+
         let addProjectButton = document.createElement("button");
         addProjectButton.classList.add("add-project");
         addProjectButton.innerText = "Add Project";
@@ -67,10 +109,11 @@ export class Domrender{
         let addTodoButton = document.createElement("button");
         addTodoButton.classList.add("add-todo");
         addTodoButton.innerText = "Add Task";
+        addTodoButton.dataset.projectId = ProjectId;
         todoContainer.appendChild(addTodoButton);
     }
-    loadFormTodo(ProjectId ,ProjectList){
-        let Project = ProjectList.find(p => p.id === ProjectId);
+    loadFormTodo(){
+        ProjectId = document.querySelector(".add-todo").dataset.id;
         const container = document.querySelector(".todos"); 
         container.innerHTML = `
             <form id="listForm" class="" autocomplete="off">
@@ -89,4 +132,5 @@ export class Domrender{
             </form>
         `;
     }
+
 }

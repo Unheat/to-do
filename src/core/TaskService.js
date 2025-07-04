@@ -26,6 +26,7 @@ export class TaskServices  {
         let newProject = new Project(ProjectTitle);
         this.projectList.push(newProject);
         storage.saveAllProjects(this.projectList);
+        console.log("added and saved new project");
     }
     deleteproject(projectIdDel){
         this.projectList = this.projectList.filter(project => project.id !== projectIdDel);
