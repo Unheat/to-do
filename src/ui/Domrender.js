@@ -19,7 +19,7 @@ export class Domrender{
     }
 
     init() {
-        const projects = document.querySelector(".projects");
+        const projects = document.querySelector(".project-form");
 
         // Add Project Button
         const addProjectButton = document.createElement("button");
@@ -84,20 +84,22 @@ export class Domrender{
         } 
     }
     loadTodoFromProjectId(ProjectId ,ProjectList){
+        console.log("loadTodoFromProjectId called");
         let Project = ProjectList.find(p => p.id === ProjectId);
         if (!Project) {
             console.log("can not find project id line 89 domreder");
         };
+        console.log(ProjectId, Project);
         let todoContainer = document.querySelector(".todos");
         [...todoContainer.children].forEach(child => {
-            if (!child.classList.contains('add-todo')) {
-                todoContainer.removeChild(child);
-            }
+      
+            todoContainer.removeChild(child);
+            
         });
         Project.todoList.forEach(todo => {
             
             
-
+            console.log("this shit run");
             let todoDiv = document.createElement("div");
             todoDiv.classList.add("todo");
             todoDiv.dataset.id = todo.id;
@@ -126,7 +128,7 @@ export class Domrender{
         addTodoButton.innerText = "Add Task";
         addTodoButton.dataset.id = ProjectId;
 
-        console.log(addTodoButton.dataset.projectId);
+        console.log(addTodoButton.dataset.id);
 
         todoContainer.appendChild(addTodoButton);
     }

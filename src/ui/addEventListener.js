@@ -7,8 +7,8 @@ function addLoadProjectListener({ ui, taskSvc }) {
     const projectEl = e.target.closest("[data-id]"); 
     if (!projectEl) return; // click was not on a project entry
 
-    const id = projectEl.dataset.id;
-    ui.loadTodoFromProjectId(id, taskSvc.projectList);
+    const Proid = projectEl.dataset.id;
+    ui.loadTodoFromProjectId(Proid, taskSvc.projectList);
   });
 }
 

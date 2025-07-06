@@ -1,6 +1,16 @@
-/* styles.css */
-body {
-  background-color: rgb(86, 77, 94);
+*{
+  border: solid;
+}
+html, body {
+  height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;    /* Prevent the whole page from scrolling */
+}
+header{
+  height: 50px; 
+  flex-shrink: 0;
 }
 .hidden {
   position: absolute !important;
@@ -11,7 +21,7 @@ body {
   opacity: 0 !important;
   transition: max-height 1s ease-out !important;
 }
-.project #projectForm {
+#projectForm {
     display: flex;
     flex: 1;
     align-items: flex-start;
@@ -21,4 +31,19 @@ body {
     transition-delay: 1s;
     max-height: 500px;
     transition: max-height 0.8s ease-out, opacity 300ms ease-in-out;
+}
+
+.content {
+  flex: 1; /* Take all remaining height */
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: auto;
+}
+img{
+  width: 30px;
+  height: 30px;
+}
+.projects .project {
+  min-height: 1.5rem;         
+
 }
